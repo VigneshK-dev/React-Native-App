@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Image, Text } from 'react-native'
 import { ImageBackground } from 'react-native';
 import { StyleSheet } from 'react-native';
-import { COLORS,SIZES } from '../../constants';
+import { COLORS,SIZES } from '../../../constants';
 
 function OnBoardingCard({ background,image,title,text,index}) {
 

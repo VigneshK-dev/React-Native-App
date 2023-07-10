@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { View, Image, Animated, FlatList } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StyleSheet } from 'react-native';
-import Logo from "../../assets/images/logo_02.png"
-import Background1 from "../../assets/images/background_01.png"
-import Background2 from "../../assets/images/background_02.png"
-import Image1 from "../../assets/images/favourite_food.png"
-import Image2 from "../../assets/images/hot_delivery.png"
-import Image3 from "../../assets/images/great_food.png"
-import OnBoardingCard from './OnBoardingCard';
-import Button from '../../components/Button';
-import { SIZES, COLORS } from '../../constants';
+import Logo from "../../../assets/images/logo_02.png"
+import Background1 from "../../../assets/images/background_01.png"
+import Background2 from "../../../assets/images/background_02.png"
+import Image1 from "../../../assets/images/favourite_food.png"
+import Image2 from "../../../assets/images/hot_delivery.png"
+import Image3 from "../../../assets/images/great_food.png"
+import OnBoardingCard from './onBoardingCard';
+import Button from '../../../components/Button';
+import { SIZES, COLORS } from '../../../constants';
 import { useNavigation } from "@react-navigation/native"
 
 let data = [
@@ -38,13 +38,14 @@ let data = [
 ]
 
 
-function OnBoarding() {
+function OnBoardingArea() {
   const [tab, setTab] = useState(0)
 
   const scrollX = useRef(new Animated.Value(0)).current
   const flatListRef = useRef(FlatList);
   const navigate = useNavigation()
 
+  // eslint-disable-next-line no-unused-vars
   const onScrollChange = useRef(({ viewableItems, changed }) => {
     setTab(viewableItems[0]?.index)
   })
@@ -63,10 +64,6 @@ function OnBoarding() {
 
   const handleSkip = () => {
     navigate.navigate("login")
-    flatListRef?.current?.scrollToIndex({
-      animated: true,
-      index: 0
-    });
   }
 
 
@@ -111,9 +108,7 @@ function OnBoarding() {
   }
 
   return (
-    <View style={{
-      flex: 1
-    }}>
+    <View style={{flex: 1}}>
       <View style={styles.logoContainer}>
         <Image
           source={Logo}
@@ -165,7 +160,7 @@ function OnBoarding() {
             />
           )}
           {tab < data.length - 1 && (
-            <>
+            <React.Fragment>
               <Button
                 text={"Skip"}
                 type={"secondary"}
@@ -178,7 +173,7 @@ function OnBoarding() {
                 newWidth={200}
                 onClick={handleNextTab}
               />
-            </>
+            </React.Fragment>
           )}
         </View>
       </SafeAreaView>
@@ -235,4 +230,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default OnBoarding
+export default OnBoardingArea
